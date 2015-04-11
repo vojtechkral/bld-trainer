@@ -21,7 +21,7 @@
 			data: {
 				scheme: 'ABCDEFGHIJKLMNOPQRSTUVWX',
 				pair: '__',
-				dictRegExp: '',
+				dictRegExp: '^a.*b',
 				dictResults: '',
 				dictResultsNum: 0
 			},
