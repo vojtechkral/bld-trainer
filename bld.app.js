@@ -1,15 +1,7 @@
 (function(bld, $, undefined)
 {
 
-	bld.dict = [];
-
-	function loadDict(name)
-	{
-		$.getJSON('dict/'+name+'.json', function(data)
-		{
-			bld.dict[name] = data;
-		});
-	}
+	bld.dict = {}
 
 	function haveLocalStorage()
 	{
@@ -25,8 +17,6 @@
 
 	$(document).ready(function()
 	{
-		loadDict('csNouns');
-
 		var mApp = oswin.model({
 			data: {
 				scheme: 'ABCDEFGHIJKLMNOPQRSTUVWX',
@@ -44,6 +34,8 @@
 					{
 						if ('scheme' in localStorage) this.data.scheme = localStorage.scheme;
 					}
+
+					this.dictLoaded = false;
 				},
 
 				setScheme: function(scheme)
@@ -69,6 +61,12 @@
 					oswin.event.preventDefault();
 					this.data.dictResults = '';
 
+					if (!this.dictLoaded)
+					{
+						this.data.dictResults = 'Slovník ještě není načten...';
+						return;
+					}
+
 					var re;
 					try { re = new RegExp(this.data.dictRegExp, 'i'); }
 					catch (e) {
@@ -76,14 +74,20 @@
 						return;
 					}
 
-					var dict = bld.dict['csNouns'];
+					var dict = bld.dict;
 					var num = 0;
+					var cap = 4096;
 					for (var i = 0, l = dict.length; i < l; i++)
 					{
 						if (re.test(dict[i]))
 						{
 							this.data.dictResults += dict[i] + "\n";
 							num++
+							if (num >= cap)
+							{
+								this.data.dictResults += "...příliš mnoho výsledků, končím.\n";
+								break;
+							}
 						}
 					}
 					this.data.dictResultsNum = num;
@@ -99,6 +103,16 @@
 					"a.*b    - slova obsahující A a někde za ním B\n"+
 					"[ab]    - slova obsahující A a/nebo B\n"+
 					"\nPozn: hledání nerozlišuje malá a velká písmena"
+				},
+
+				loadDict: function()
+				{
+					var self = this;
+					$.getJSON('dict/csNouns.json', function(data)
+					{
+						bld.dict = data;
+						self.dictLoaded = true;
+					});
 				}
 			},
 
@@ -113,6 +127,7 @@
 		var app = mApp.make();
 		bld.app = app;
 		app.view('view');
+		app.loadDict();
 	});
 
 }(window.bld = window.bld || {}, jQuery));
