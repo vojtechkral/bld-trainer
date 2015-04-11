@@ -20,12 +20,12 @@
 <div class="pure-g full" data-ov="view/view">
 	<div id="screen" class="pure-u-1-2">
 		<div class="screen-pad fullh">
-			<h2 class="center">BLD schéma</h2>
+			<h2 class="center">Generátor párů</h2>
 			<div class="center"><p>&lt;Enter&gt; vygeneruje pár</p></div>
 			<form class="form-horizontal" data-oc='submit/app.genPair'>
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Schéma</label>
-					<div class="col-sm-10 input-group">
+					<div class="fullw input-group">
+						<span class="input-group-addon"><b>Schéma</b></span>
 						<input type="text" class="form-control focus mono" data-ov="scheme" />
 						<span class="input-group-btn">
 						<input class="btn btn-primary" type="submit" value="Generuj" />
@@ -34,8 +34,8 @@
 				</div>
 			</form>
 			<div id="pair" class="center" data-ov="pair"></div>
-			<p>Přednastavení: <a href="javascript:void(0)" data-oc='click/app.setScheme'>Speffz</a>,
-			<a href="javascript:void(0)" data-oc='click/app.setScheme("ABCDEFGHIJKLMNOPČRSTUVZŽ")'>Speffz-cz-vk</a></p>
+			<p>Přednastavení: <span class="linklike" data-oc='click/app.setScheme'>Speffz</span>,
+			<span class="linklike" data-oc='click/app.setScheme("ABCDEFGHIJKLMNOPČRSTUVZŽ")'>Speffz-cz-vk</span></p>
 		</div>
 	</div>
 	<div id="screen" class="pure-u-1-2">
@@ -44,8 +44,8 @@
 			<div class="center"><p>Česká podstatná jména, &lt;Enter&gt; vyhledá výraz</p></div>
 			<form class="form-horizontal" data-oc="submit/app.dictFilter">
 				<div class="form-group">
-					<label class="col-sm-2 control-label">Regexp</label>
-					<div class="col-sm-10 input-group">
+					<div class="fullw input-group">
+						<span class="input-group-addon"><b>Regexp</b></span>
 						<input type="text" class="form-control" data-ov="dictRegExp" />
 						<span class="input-group-btn">
 						<input class="btn btn-primary" type="submit" value="Hledej" />
@@ -55,7 +55,7 @@
 			</form>
 			<p><b>Výsledků:</b> <span data-ov="dictResultsNum"></span></p>
 			<div id="dictResults" class="fullw" data-ov="dictResults"></div>
-			<p><a href="javascript:void(0)" data-oc="click/app.regexpDemo">Příklady regexpů</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.interval.cz/clanky/regularni-vyrazy-v-php-pro-zacatecniky-i/" target="_blank">Více info</a>&nbsp;&nbsp;|&nbsp;&nbsp;Slovník © autoři <a href="http://aspell.net/">Aspell / aspell-cs</a></p>
+			<p><a href="javascript:void(0)" data-oc="click/app.regexpDemo">Příklady regexpů</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.interval.cz/clanky/regularni-vyrazy-v-php-pro-zacatecniky-i/" target="_blank">Více o regexpech</a>&nbsp;&nbsp;|&nbsp;&nbsp;Slovník © autoři <a href="http://aspell.net/">Aspell / aspell-cs</a></p>
 		</div>
 	</div>
 </div>

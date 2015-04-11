@@ -58,6 +58,7 @@ ul
 	white-space: pre !important;
 }
 
+
 /*** Utils ***/
 
 a:hover, a:active
@@ -123,4 +124,15 @@ a:hover, a:active
 .mono
 {
 	font-family: monospace;
+}
+
+.linklike
+{
+	color: #047ce8;
+	cursor: pointer;
+}
+.linklike:hover
+{
+	color: #03549d;
+	text-decoration: underline;
 }
