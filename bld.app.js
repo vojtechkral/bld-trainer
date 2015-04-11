@@ -77,23 +77,23 @@
 
 					if (this.haveLocalStorage) localStorage.dictRegExp = this.data.dictRegExp;
 
-					var dict = bld.dict;
 					var num = 0;
 					var cap = 4096;
-					for (var i = 0, l = dict.length; i < l; i++)
+					var ret = bld.dict.filter(function(e)
 					{
-						if (re.test(dict[i]))
+						if (re.test(e) && num < cap)
 						{
-							this.data.dictResults += dict[i] + "\n";
-							num++
-							if (num >= cap)
-							{
-								this.data.dictResults += "...příliš mnoho výsledků, končím.\n";
-								break;
-							}
+							num++;
+							return true;
 						}
-					}
+						else return false;
+					});
+					ret.sort(function(a, b) { return a.length - b.length; });
+					var ret_str = '';
+					for (var i = 0, l = ret.length; i < l; i++) ret_str += ret[i] + "\n";
+					if (num >= cap) ret_str += "...příliš mnoho výsledků, končím.\n";
 					this.data.dictResultsNum = num;
+					this.data.dictResults = ret_str;
 				},
 
 				regexpDemo: function()
