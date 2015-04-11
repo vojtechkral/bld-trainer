@@ -33,6 +33,7 @@
 					if (this.haveLocalStorage)
 					{
 						if ('scheme' in localStorage) this.data.scheme = localStorage.scheme;
+						if ('dictRegExp' in localStorage) this.data.dictRegExp = localStorage.dictRegExp;
 					}
 
 					this.dictLoaded = false;
@@ -73,6 +74,8 @@
 						this.data.dictResults = "Neplatný regulární výraz\n"+e;
 						return;
 					}
+
+					if (this.haveLocalStorage) localStorage.dictRegExp = this.data.dictRegExp;
 
 					var dict = bld.dict;
 					var num = 0;
