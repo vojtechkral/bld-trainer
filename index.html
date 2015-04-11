@@ -1,0 +1,57 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="cs" lang="cs">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="Content-Language" content="cs" />
+	<meta name="language" content="cs" />
+	<title>bld.kral.hk</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="pure-min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="page.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="bootstrap-theme.min.css" />
+	<script language="javascript" type="text/javascript" src="jquery.min.js"></script>
+	<script language="javascript" type="text/javascript" src="oswin.min.js"></script>
+	<script language="javascript" type="text/javascript" src="bld.app.js"></script>
+</head>
+<body>
+<div class="pure-g full" data-ov="view/view">
+	<div id="screen" class="pure-u-1-2">
+		<div class="screen-pad fullh">
+			<h2 class="center">BLD shcéma</h2>
+			<div class="center"><p>&lt;Enter&gt; vygeneruje pár</p></div>
+			<!-- <form class="form-horizontal" data-oc="submit/app.genPair"> -->
+			<form class="form-horizontal" data-oc='submit/app.genPair'>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Schéma</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control focus mono" data-ov="scheme" />
+						Přednastavení: <a href="javascript:void(0)" data-oc='click/app.setScheme'>Speffz</a>,
+						<a href="javascript:void(0)" data-oc='click/app.setScheme("ABCDEFGHIJKLMNOPČRSTUVZŽ")'>Speffz-cz-vk</a>
+					</div>
+				</div>
+			</form>
+			<div id="pair" class="center" data-ov="pair"></div>
+		</div>
+	</div>
+	<div id="screen" class="pure-u-1-2">
+		<div class="screen-pad fullh">
+			<h2 class="center">Slovník</h2>
+			<div class="center"><p>Česká podstatná jména, &lt;Enter&gt; vyhledá výraz</p></div>
+			<form class="form-horizontal" data-oc="submit/app.dictFilter">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Regexp</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" data-ov="dictRegExp" />
+					</div>
+				</div>
+			</form>
+			<p><b>Výsledků:</b> <span data-ov="dictResultsNum"></span></p>
+			<div id="dictResults" class="fullw" data-ov="dictResults"></div>
+			<p><a href="javascript:void(0)" data-oc="click/app.regexpDemo">Příklady regexpů</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="https://www.interval.cz/clanky/regularni-vyrazy-v-php-pro-zacatecniky-i/" target="_blank">Více info</a>&nbsp;&nbsp;|&nbsp;&nbsp;Slovník © autoři <a href="http://aspell.net/">Aspell / aspell-cs</a></p>
+		</div>
+	</div>
+</div>
+</html>

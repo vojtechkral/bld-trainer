@@ -1,0 +1,126 @@
+
+html, body
+{
+	height: 100%;
+	width: 100%;
+}
+
+body
+{
+	background-image: url('bg.png');
+	overflow: hidden;
+}
+
+h1
+{
+	margin-top: 0;
+	font-size: 1.75em;
+}
+
+h2
+{
+	font-size: 1.25em;
+}
+
+ul
+{
+	list-style-type: none;
+}
+
+
+#screen
+{
+	height: 100%;
+	z-index: 10;
+	-webkit-box-shadow: 8px 0px 26px -6px rgba(219,219,219,1);
+	-moz-box-shadow: 8px 0px 26px -6px rgba(219,219,219,1);
+	box-shadow: 8px 0px 26px -6px rgba(219,219,219,1);
+}
+
+.screen-pad
+{
+	padding: 3em;
+}
+
+#pair
+{
+	font-size: 5em;
+}
+
+#dictResults
+{
+	height: auto;
+	max-height: 75%;
+	font-family: monospace;
+	overflow: auto;
+	word-break: normal !important;
+	word-wrap: normal !important;
+	white-space: pre !important;
+}
+
+/*** Utils ***/
+
+a:hover, a:active
+{
+	text-decoration: none;
+}
+
+.faint
+{
+	color: #777;
+}
+
+.fullw { width:  100%; }
+.fullh { height: 100%; }
+.full
+{
+	width: 100%;
+	height: 100%;
+}
+
+.line
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.hr
+{
+	background-color: #dddddd;
+	width: 100%;
+	height: 2px;
+	margin: 5px 0;
+}
+
+.center { text-align: center; }
+
+.left   { float: left;   }
+.right  { float: right;  }
+
+.small { font-size: .8em; }
+
+.hid { display: none; }  /* Because Bootstrap selfishly takes both .hide AND .hidden */
+
+.scroll
+{
+	overflow: auto;
+}
+
+.comma:after            { content: ', '; }
+.comma:last-child:after { content: '';   }
+
+.btn:focus, .btn:active:focus, .btn.active:focus
+{
+	outline: 0;
+}
+
+.btn-small
+{
+	font-size: .8em;
+	padding: 2px 4px;
+}
+
+.mono
+{
+	font-family: monospace;
+}
