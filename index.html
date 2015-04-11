@@ -22,18 +22,20 @@
 		<div class="screen-pad fullh">
 			<h2 class="center">BLD shcéma</h2>
 			<div class="center"><p>&lt;Enter&gt; vygeneruje pár</p></div>
-			<!-- <form class="form-horizontal" data-oc="submit/app.genPair"> -->
 			<form class="form-horizontal" data-oc='submit/app.genPair'>
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Schéma</label>
-					<div class="col-sm-10">
+					<div class="col-sm-10 input-group">
 						<input type="text" class="form-control focus mono" data-ov="scheme" />
-						Přednastavení: <a href="javascript:void(0)" data-oc='click/app.setScheme'>Speffz</a>,
-						<a href="javascript:void(0)" data-oc='click/app.setScheme("ABCDEFGHIJKLMNOPČRSTUVZŽ")'>Speffz-cz-vk</a>
+						<span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" value="Generuj" />
+						</span>
 					</div>
 				</div>
 			</form>
 			<div id="pair" class="center" data-ov="pair"></div>
+			<p>Přednastavení: <a href="javascript:void(0)" data-oc='click/app.setScheme'>Speffz</a>,
+			<a href="javascript:void(0)" data-oc='click/app.setScheme("ABCDEFGHIJKLMNOPČRSTUVZŽ")'>Speffz-cz-vk</a></p>
 		</div>
 	</div>
 	<div id="screen" class="pure-u-1-2">
@@ -43,8 +45,11 @@
 			<form class="form-horizontal" data-oc="submit/app.dictFilter">
 				<div class="form-group">
 					<label class="col-sm-2 control-label">Regexp</label>
-					<div class="col-sm-10">
+					<div class="col-sm-10 input-group">
 						<input type="text" class="form-control" data-ov="dictRegExp" />
+						<span class="input-group-btn">
+						<input class="btn btn-primary" type="submit" value="Hledej" />
+						</span>
 					</div>
 				</div>
 			</form>
