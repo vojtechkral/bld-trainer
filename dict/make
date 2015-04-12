@@ -1,0 +1,14 @@
+#!/bin/sh
+
+
+jsonify()
+{
+	echo -n '['
+	sed -e '$!s/^/"/; $!s/$/",/; $s/^/"/; $s/$/"/;' | tr '\n' ' '
+	echo ']'
+}
+
+set -v
+
+aspell -l cs dump master | grep '/[ZHSQMPU]' | sed 's_/.*$__;' | jsonify > csNouns.json
+
