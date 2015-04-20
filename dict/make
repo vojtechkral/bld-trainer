@@ -4,11 +4,11 @@
 jsonify()
 {
 	echo -n '['
-	sed -e '$!s/^/"/; $!s/$/",/; $s/^/"/; $s/$/"/;' | tr '\n' ' '
+	sed -e '$!s/^/"/; $!s/$/",/; $s/^/"/; $s/$/"/;' | tr -d '\n'
 	echo ']'
 }
 
+set -e
 set -v
 
-aspell -l cs dump master | grep '/[ZHSQMPU]' | sed 's_/.*$__;' | jsonify > csNouns.json
-
+aspell -l cs dump master | grep '^[[:lower:]].*/[ZHSQMPUL]' | sed 's_/.*$__;' | jsonify > csNouns.json
