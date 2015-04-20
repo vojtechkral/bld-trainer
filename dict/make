@@ -11,4 +11,9 @@ jsonify()
 set -e
 set -v
 
-aspell -l cs dump master | grep '^[[:lower:]].*/[ZHSQMPUL]' | sed 's_/.*$__;' | jsonify > csNouns.json
+aspell -l cs dump master \
+ | grep '^[[:lower:]].*/[ZHSQMPUL]' \
+ | sed 's_/.*$__;' \
+ | cat - csNouns-aspell-nosuffix \
+ | jsonify > csNouns.json
+
