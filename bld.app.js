@@ -15,10 +15,10 @@
 
 			data: {
 				scheme: 'ABCDEFGHIJKLMNOPQRSTUVWX',
-				pair: '__',
+				_pair: '__',
 				dictRegExp: '^a.*b',
-				dictResults: '',
-				dictResultsNum: 0
+				_dictResults: '',
+				_dictResultsNum: 0
 			},
 
 			members: {
@@ -40,20 +40,20 @@
 					var r2 = r1;
 					while (r2 == r1) r2 = Math.floor(Math.random() * scheme.length);
 
-					this.data.pair = scheme[r1] + scheme[r2];
+					this.data._pair = scheme[r1] + scheme[r2];
 				},
 
 				dictFilter: function()
 				{
 					oswin.event.preventDefault();
-					this.data.dictResults = '';
-					this.data.dictResultsNum = 0;
+					this.data._dictResults = '';
+					this.data._dictResultsNum = 0;
 
 					var re;
 					try { re = new RegExp(this.data.dictRegExp, 'i'); }
 					catch (e)
 					{
-						this.data.dictResults = "Neplatný regulární výraz\n"+e;
+						this.data._dictResults = "Neplatný regulární výraz\n"+e;
 						return;
 					}
 
@@ -61,7 +61,7 @@
 
 					if (!this.dictLoaded)
 					{
-						this.data.dictResults = 'Slovník ještě není načten...';
+						this.data._dictResults = 'Slovník ještě není načten...';
 						return;
 					}
 
@@ -80,13 +80,13 @@
 					var ret_str = '';
 					for (var i = 0, l = ret.length; i < l; i++) ret_str += ret[i] + "\n";
 					if (num >= cap) ret_str += "...příliš mnoho výsledků, končím.\n";
-					this.data.dictResultsNum = num;
-					this.data.dictResults = ret_str;
+					this.data._dictResultsNum = num;
+					this.data._dictResults = ret_str;
 				},
 
 				regexpDemo: function()
 				{
-					this.data.dictResults = ""+
+					this.data._dictResults = ""+
 					"^a.*b   - slova začínající na písmeno A a obsahující písmeno B\n"+
 					"^ab     - slova začínající na AB\n"+
 					"^a.*b$  - slova začínající na A a končící na B\n"+
