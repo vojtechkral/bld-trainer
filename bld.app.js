@@ -3,13 +3,6 @@
 
 	bld.dict = {}
 
-	function haveLocalStorage()
-	{
-		try { return 'localStorage' in window && window['localStorage'] !== null; }
-		catch (e) { return false; }
-	}
-
-
 	oswin.config.namespace = bld;
 	oswin.config.binds = [
 			['.focus', 'init/focus'],
@@ -17,7 +10,9 @@
 
 	$(document).ready(function()
 	{
-		var mApp = oswin.model({
+		var App = oswin.model({
+			url: { read: 'bldTrainer' },
+
 			data: {
 				scheme: 'ABCDEFGHIJKLMNOPQRSTUVWX',
 				pair: '__',
@@ -27,22 +22,13 @@
 			},
 
 			members: {
-				ctor: function()
-				{
-					this.haveLocalStorage = haveLocalStorage();
-					if (this.haveLocalStorage)
-					{
-						if ('scheme' in localStorage) this.data.scheme = localStorage.scheme;
-						if ('dictRegExp' in localStorage) this.data.dictRegExp = localStorage.dictRegExp;
-					}
-
-					this.dictLoaded = false;
-				},
+				dictLoaded: false,
 
 				setScheme: function(scheme)
 				{
 					if (scheme === undefined) this.data.scheme = 'ABCDEFGHIJKLMNOPQRSTUVWX';
 					else this.data.scheme = scheme;
+					this.update();
 				},
 
 				genPair: function()
@@ -61,21 +47,23 @@
 				{
 					oswin.event.preventDefault();
 					this.data.dictResults = '';
+					this.data.dictResultsNum = 0;
+
+					var re;
+					try { re = new RegExp(this.data.dictRegExp, 'i'); }
+					catch (e)
+					{
+						this.data.dictResults = "Neplatný regulární výraz\n"+e;
+						return;
+					}
+
+					this.update();
 
 					if (!this.dictLoaded)
 					{
 						this.data.dictResults = 'Slovník ještě není načten...';
 						return;
 					}
-
-					var re;
-					try { re = new RegExp(this.data.dictRegExp, 'i'); }
-					catch (e) {
-						this.data.dictResults = "Neplatný regulární výraz\n"+e;
-						return;
-					}
-
-					if (this.haveLocalStorage) localStorage.dictRegExp = this.data.dictRegExp;
 
 					var num = 0;
 					var cap = 4096;
@@ -119,18 +107,18 @@
 				}
 			},
 
-			change: {
-				scheme: function(value, name)
-				{
-					if (this.haveLocalStorage) localStorage.scheme = this.data.scheme;
-				}
+			on: {
+				'mod:scheme': function() { this.update(); }
 			}
 		});
 
-		var app = mApp.make();
+		App.sync = oswin.localSync;
+
+		var app = App.make();
 		bld.app = app;
 		app.view('view');
 		app.loadDict();
+		app.get();
 	});
 
 }(window.bld = window.bld || {}, jQuery));
