@@ -12,7 +12,7 @@ set -e
 set -v
 
 aspell -l cs dump master \
- | grep '^[[:lower:]].*/[ZHSQMPUL]' \
+ | grep '^[[:lower:]].*/[ZHSQMPULK]' \
  | sed 's_/.*$__;' \
  | cat - csNouns-aspell-nosuffix \
  | jsonify > csNouns.json
