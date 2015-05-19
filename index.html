@@ -21,8 +21,8 @@
 	<div id="screen" class="pure-u-1-2">
 		<div class="screen-pad fullh">
 			<h2 class="center">Generátor párů</h2>
-			<div class="center"><p>&lt;Enter&gt; vygeneruje pár</p></div>
-			<form class="form-horizontal" data-oc='submit/app.genPair'>
+			<div class="center"><p>Pořádí písmen ve schématu by mělo odpovídat Speffz</p></div>
+			<form class="form-horizontal" data-oc='submit/app.genPairs'>
 				<div class="form-group">
 					<div class="fullw input-group">
 						<span class="input-group-addon"><b>Schéma</b></span>
@@ -33,7 +33,11 @@
 					</div>
 				</div>
 			</form>
-			<div id="pair" class="center" data-ov="_pair"></div>
+			<table>
+				<tr><td><strong>3BLD Hrany:</strong></td><td class="huge mono" data-ov="_edges">AB CD</td></tr>
+				<tr><td><strong>3BLD Rohy:</strong></td><td class="huge mono" data-ov="_corners">AB CD</td></tr>
+			</table>
+			<p>(Scramble nemusí být vždy validní)</p>
 			<p>Přednastavení: <span class="linklike" data-oc='click/app.setScheme'>Speffz</span>,
 			<span class="linklike" data-oc='click/app.setScheme("ABCDEFGHIJKLMNOPČRSTUVZŽ")'>Speffz-cz-vk</span></p>
 		</div>

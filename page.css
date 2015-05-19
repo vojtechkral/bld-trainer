@@ -17,15 +17,11 @@ h1
 	font-size: 1.75em;
 }
 
-h2
-{
-	font-size: 1.25em;
-}
+h2 { font-size: 1.25em; }
 
-ul
-{
-	list-style-type: none;
-}
+ul { list-style-type: none; }
+
+td { padding-right: 1em !important; }
 
 
 #screen
@@ -40,11 +36,6 @@ ul
 .screen-pad
 {
 	padding: 3em;
-}
-
-#pair
-{
-	font-size: 5em;
 }
 
 #dictResults
@@ -121,10 +112,9 @@ a:hover, a:active
 	padding: 2px 4px;
 }
 
-.mono
-{
-	font-family: monospace;
-}
+.mono { font-family: monospace; }
+
+.huge { font-size: 2em; }
 
 .linklike
 {

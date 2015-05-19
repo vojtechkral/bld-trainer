@@ -58,21 +58,19 @@
 		shuffle(this.edges);
 		shuffle(this.corners);
 
-		var ret = this.edges.reduce(function(acc, val, i)
+		var edges = this.edges.reduce(function(acc, val, i)
 		{
 			var r = Math.floor(Math.random() * 2);
 			return acc + val[r] + (i % 2 == 0 ? '' : ' ');
 		}, '');
 
-		ret += '\n';
-
-		var ret = this.corners.reduce(function(acc, val, i)
+		var corners = this.corners.reduce(function(acc, val, i)
 		{
 			var r = Math.floor(Math.random() * 3);
 			return acc + val[r] + (i % 2 == 0 ? '' : ' ');
-		}, ret);
+		}, '');
 
-		return ret;
+		return [edges, corners];
 	};
 
 
@@ -83,7 +81,8 @@
 
 			data: {
 				scheme: 'ABCDEFGHIJKLMNOPQRSTUVWX',
-				_pair: '__',
+				_edges: '-',
+				_corners: '-',
 				dictRegExp: '^a.*b',
 				_dictResults: '',
 				_dictResultsNum: 0
@@ -100,16 +99,14 @@
 					this.update();
 				},
 
-				genPair: function()
+				genPairs: function()
 				{
 					oswin.event.preventDefault();
 
-					var scheme = this.data.scheme;
-					var r1 = Math.floor(Math.random() * scheme.length);
-					var r2 = r1;
-					while (r2 == r1) r2 = Math.floor(Math.random() * scheme.length);
-
-					this.data._pair = scheme[r1] + scheme[r2];
+					this.cube3.setScheme(this.data.scheme);
+					var sh = this.cube3.shuffle();
+					this.data._edges = sh[0];
+					this.data._corners = sh[1];
 				},
 
 				dictFilter: function()
