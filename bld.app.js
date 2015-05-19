@@ -8,6 +8,74 @@
 			['.focus', 'init/focus'],
 		];
 
+
+	function shuffle(array)
+	{
+		for (var i = array.length; i > 0;)
+		{
+			r = Math.floor(Math.random() * i);
+			i--;
+			var tmp = array[i];
+			array[i] = array[r];
+			array[r] = tmp;
+		}
+	}
+
+
+	function Cube3()
+	{
+		this.edges = new Array(12);
+		this.corners = new Array(8);
+	}
+
+	Cube3.prototype.setScheme = function(scheme)
+	{
+		this.edges[0] =  [ scheme[0],  scheme[16] ];
+		this.edges[1] =  [ scheme[1],  scheme[12] ];
+		this.edges[2] =  [ scheme[2],  scheme[8]  ];
+		this.edges[3] =  [ scheme[3],  scheme[4]  ];
+		this.edges[4] =  [ scheme[19], scheme[13] ];
+		this.edges[5] =  [ scheme[15], scheme[9]  ];
+		this.edges[6] =  [ scheme[11], scheme[5]  ];
+		this.edges[7] =  [ scheme[7],  scheme[17] ];
+		this.edges[8] =  [ scheme[22], scheme[18] ];
+		this.edges[9] =  [ scheme[21], scheme[14] ];
+		this.edges[10] = [ scheme[20], scheme[10] ];
+		this.edges[11] = [ scheme[23], scheme[6]  ];
+
+		this.corners[0] = [ scheme[0],  scheme[4],  scheme[17] ];
+		this.corners[1] = [ scheme[1],  scheme[13], scheme[16] ];
+		this.corners[2] = [ scheme[2],  scheme[9],  scheme[12] ];
+		this.corners[3] = [ scheme[3],  scheme[8],  scheme[5]  ];
+		this.corners[4] = [ scheme[23], scheme[7],  scheme[18] ];
+		this.corners[5] = [ scheme[22], scheme[14], scheme[19] ];
+		this.corners[6] = [ scheme[21], scheme[15], scheme[10] ];
+		this.corners[7] = [ scheme[20], scheme[11], scheme[6]  ];
+	};
+
+	Cube3.prototype.shuffle = function()
+	{
+		shuffle(this.edges);
+		shuffle(this.corners);
+
+		var ret = this.edges.reduce(function(acc, val, i)
+		{
+			var r = Math.floor(Math.random() * 2);
+			return acc + val[r] + (i % 2 == 0 ? '' : ' ');
+		}, '');
+
+		ret += '\n';
+
+		var ret = this.corners.reduce(function(acc, val, i)
+		{
+			var r = Math.floor(Math.random() * 3);
+			return acc + val[r] + (i % 2 == 0 ? '' : ' ');
+		}, ret);
+
+		return ret;
+	};
+
+
 	$(document).ready(function()
 	{
 		var App = oswin.model({
@@ -23,6 +91,7 @@
 
 			members: {
 				dictLoaded: false,
+				cube3: new Cube3(),
 
 				setScheme: function(scheme)
 				{
